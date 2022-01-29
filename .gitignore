@@ -1,0 +1,9 @@
+과제
+**/과제/**
+*/과제/*
+수업자료
+*/수업자료/*
+**/수업자료/**
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+**/.ipynb_checkpoints/**
