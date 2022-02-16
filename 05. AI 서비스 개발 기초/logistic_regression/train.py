@@ -1,0 +1,51 @@
+# train.py
+
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+import mlflow
+import mlflow.sklearn
+
+###################
+## autolog 활용 전 ##
+###################
+
+# if __name__ == "__main__":
+#     X = np.array([-2, -1, 0, 1, 2, 1]).reshape(-1, 1)
+#     y = np.array([0, 0, 1, 1, 1, 0])
+
+#     penalty = "elasticnet"
+#     l1_ratio = 0.1
+#     lr = LogisticRegression(penalty=penalty, l1_ratio=l1_ratio, solver='saga')
+
+#     lr.fit(X, y)
+
+#     score = lr.score(X, y)
+#     print("Score: %s" % score)
+
+#     # parameter 명시 해줘서 mlflow 저장
+#     mlflow.log_param("penalty", penalty)
+#     mlflow.log_param("l1_ratio", 0.1)
+#     mlflow.log_metric("score", score)
+#     mlflow.sklearn.log_model(lr, "model")
+
+##################
+## autolog 활용 후##
+##################
+
+if __name__ == "__main__":
+    mlflow.sklearn.autolog()
+
+    X = np.array([-2, -1, 0, 1, 2, 1]).reshape(-1, 1)
+    y = np.array([0, 0, 1, 1, 1, 0])
+
+    solver = "saga"
+    penalty = "elasticnet"
+    l1_ratio = 0.1
+    lr = LogisticRegression(penalty=penalty, l1_ratio=l1_ratio, solver=solver)
+
+    with mlflow.start_run() as run:
+        lr.fit(X, y)
+ 
+    score = lr.score(X, y)
+    print("Score: %s" % score)
