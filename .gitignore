@@ -8,3 +8,8 @@
 */.ipynb_checkpoints/*
 **/.ipynb_checkpoints/**
 **/data/**
+DKT_mission/i_scream/sample_submission.csv
+DKT_mission/i_scream/test_data.csv
+DKT_mission/i_scream/train_data.csv
+DKT_mission/LightGBM/
+DKT_mission/LightGBM_compilation.log
